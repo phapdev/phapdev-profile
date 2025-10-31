@@ -3,12 +3,32 @@ import type { Project, Skill } from "./types";
 export const PROJECTS_DATA: Project[] = [
   {
     id: 1,
-    title: "",
-    description: "",
-    tech: ["React", "D3.js", "TypeScript", "AWS Lambda", "TailwindCSS"],
-    imageUrl: "https://picsum.photos/seed/cygnus/600/400",
-    liveUrl: "#",
-    repoUrl: "#",
+    title: "Sui-simulator",
+    description: "An open-source project for sui developers",
+    tech: ["VScode Extension", "Sui Blockchain", "React", "TypeScript"],
+    imageUrl: "./assets/sui-simulator.png",
+    liveUrl:
+      "https://marketplace.visualstudio.com/items?itemName=weminal-labs.sui-simulator-vscode",
+    repoUrl: "https://github.com/Weminal-labs/sui-simulator-vscode",
+  },
+  {
+    id: 2,
+    title: "DongNai Travel",
+    description:
+      "Application about introducing tourist places or hanging out in Dong Nai Province (Viet Nam)",
+    tech: [
+      "Typescript",
+      "MongoDB",
+      "Expo",
+      "React-Native",
+      "Express",
+      "GoogleAPI",
+      "Cloudinary",
+      "GPT",
+    ],
+    imageUrl: "./assets/dong-nai-travel.png",
+    liveUrl: "https://www.youtube.com/watch?v=6lMZkIQiZ68",
+    repoUrl: "https://github.com/Code4life-Labs/dongnai-travel",
   },
 ];
 

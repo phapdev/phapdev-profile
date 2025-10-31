@@ -1,5 +1,4 @@
-
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect } from "react";
 
 export const AnimatedBackground: React.FC = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -7,7 +6,7 @@ export const AnimatedBackground: React.FC = () => {
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
-    const ctx = canvas.getContext('2d');
+    const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
     let animationFrameId: number;
@@ -45,13 +44,13 @@ export const AnimatedBackground: React.FC = () => {
         const dy = mouse.y - this.y;
         const distance = Math.sqrt(dx * dx + dy * dy);
         if (distance < 100) {
-            this.x -= dx/20;
-            this.y -= dy/20;
+          this.x -= dx / 20;
+          this.y -= dy / 20;
         }
       }
 
       draw() {
-        ctx!.fillStyle = 'rgba(0, 255, 255, 0.5)';
+        ctx!.fillStyle = "rgba(0, 255, 255, 0.5)";
         ctx!.beginPath();
         ctx!.arc(this.x, this.y, this.size, 0, Math.PI * 2);
         ctx!.fill();
@@ -87,7 +86,7 @@ export const AnimatedBackground: React.FC = () => {
 
     const animate = () => {
       ctx!.clearRect(0, 0, canvas.width, canvas.height);
-      particles.forEach(p => {
+      particles.forEach((p) => {
         p.update();
         p.draw();
       });
@@ -99,24 +98,24 @@ export const AnimatedBackground: React.FC = () => {
       mouse.x = event.clientX;
       mouse.y = event.clientY;
     };
-    
-    window.addEventListener('resize', resizeCanvas);
-    window.addEventListener('mousemove', handleMouseMove);
+
+    window.addEventListener("resize", resizeCanvas);
+    window.addEventListener("mousemove", handleMouseMove);
 
     resizeCanvas();
     animate();
 
     return () => {
-      window.removeEventListener('resize', resizeCanvas);
-      window.removeEventListener('mousemove', handleMouseMove);
+      window.removeEventListener("resize", resizeCanvas);
+      window.removeEventListener("mousemove", handleMouseMove);
       cancelAnimationFrame(animationFrameId);
     };
   }, []);
 
   return (
     <div className="absolute top-0 left-0 w-full h-full -z-10">
-        <div className="absolute top-0 left-0 w-full h-full bg-[url('https://picsum.photos/seed/nebula-bg/1920/1080')] bg-cover bg-center animate-[fadeIn_5s_ease-in-out] opacity-20"></div>
-        <canvas ref={canvasRef} className="absolute top-0 left-0 w-full h-full" />
+      <div className="absolute top-0 left-0 w-full h-full bg-[url('../assets/tot-nghiep.jpg')] bg-cover bg-center animate-[fadeIn_5s_ease-in-out] opacity-10"></div>
+      <canvas ref={canvasRef} className="absolute top-0 left-0 w-full h-full" />
     </div>
   );
 };
