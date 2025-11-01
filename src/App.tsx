@@ -8,14 +8,14 @@ import {
   Terminal as TerminalIcon,
 } from "lucide-react";
 
-import { AnimatedBackground } from "./components/AnimatedBackground";
-import { Navigation } from "./components/Navigation";
-import { HomePage } from "./components/sections/Home";
-import { AboutPage } from "./components/sections/About";
-import { ProjectsPage } from "./components/sections/Projects";
-import { ContactPage } from "./components/sections/Contact";
-import { Terminal } from "./components/Terminal";
-import type { Section } from "./types";
+import { AnimatedBackground } from "../components/AnimatedBackground";
+import { Navigation } from "../components/Navigation";
+import { HomePage } from "../components/sections/Home";
+import { AboutPage } from "../components/sections/About";
+import { ProjectsPage } from "../components/sections/Projects";
+import { ContactPage } from "../components/sections/Contact";
+import { Terminal } from "../components/Terminal";
+import type { Section } from "../types";
 
 const sectionComponents = {
   home: HomePage,
@@ -37,11 +37,11 @@ const pageVariants = {
   out: { opacity: 0, x: 100 },
 };
 
-const pageTransition = {
-  type: "tween",
-  ease: "anticipate",
-  duration: 0.5,
-};
+// const pageTransition = {
+//   type: "tween",
+//   damping: 10,
+//   stiffness: 100,
+// };
 
 const App: React.FC = () => {
   const [activeSection, setActiveSection] = useState<Section>("home");
@@ -82,7 +82,11 @@ const App: React.FC = () => {
             animate="in"
             exit="out"
             variants={pageVariants}
-            transition={pageTransition}
+            transition={{
+              type: "tween",
+              damping: 10,
+              stiffness: 100,
+            }}
             className="h-full w-full"
           >
             <CurrentSection />
