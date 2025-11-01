@@ -82,11 +82,13 @@ const App: React.FC = () => {
             animate="in"
             exit="out"
             variants={pageVariants}
-            transition={{
-              type: "tween",
-              damping: 10,
-              stiffness: 100,
-            }}
+            transition={
+              {
+                type: "tween",
+                damping: 10,
+                stiffness: 100,
+              }
+            }
             className="h-full w-full"
           >
             <CurrentSection />

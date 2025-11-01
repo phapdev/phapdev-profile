@@ -1,13 +1,18 @@
 import { GoogleGenAI } from "@google/genai";
 
-// Ensure API key is available from environment variables
-if (!process.env.API_KEY) {
-  // In a real app, you might have a more robust way to handle this,
-  // but for this context, an error is appropriate.
-  throw new Error("API_KEY environment variable not set.");
-}
+// Lazy initialization - chỉ tạo khi cần thiết
+let ai: GoogleGenAI | null = null;
 
-const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
+const getAI = (): GoogleGenAI => {
+  if (!ai) {
+    const apiKey = process.env.API_KEY || process.env.GEMINI_API_KEY;
+    if (!apiKey) {
+      throw new Error("API_KEY environment variable not set.");
+    }
+    ai = new GoogleGenAI({ apiKey });
+  }
+  return ai;
+};
 
 /**
  * Sends a complex query to Gemini 2.5 Pro with a maximum thinking budget.
@@ -18,7 +23,8 @@ export const askGeminiWithThinking = async (
   prompt: string,
 ): Promise<string> => {
   try {
-    const response = await ai.models.generateContent({
+    const aiInstance = getAI();
+    const response = await aiInstance.models.generateContent({
       model: "gemini-2.5-pro",
       contents: prompt,
       config: {
