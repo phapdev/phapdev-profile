@@ -11,6 +11,7 @@ if (!rootElement) {
 const root = ReactDOM.createRoot(rootElement);
 root.render(
   <React.StrictMode>
-    <App />
+    <h1 className="text-red-500 border-l-0">HELLo PHAP DEV NE</h1>
+    {/* <App /> */}
   </React.StrictMode>,
 );
