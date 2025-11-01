@@ -1,4 +1,6 @@
 import type { Project, Skill, Theme, ThemeName } from "./types";
+import suiSimulatorImage from "./src/assets/sui-simulator.png";
+import dongNaiTravelImage from "./src/assets/dong-nai-travel.png";
 
 export const PROJECTS_DATA: Project[] = [
   {
@@ -6,7 +8,7 @@ export const PROJECTS_DATA: Project[] = [
     title: "Sui-simulator",
     description: "An open-source project for sui developers",
     tech: ["VScode Extension", "Sui Blockchain", "React", "TypeScript"],
-    imageUrl: "/src/assets/sui-simulator.png",
+    imageUrl: suiSimulatorImage,
     liveUrl:
       "https://marketplace.visualstudio.com/items?itemName=weminal-labs.sui-simulator-vscode",
     repoUrl: "https://github.com/Weminal-labs/sui-simulator-vscode",
@@ -26,7 +28,7 @@ export const PROJECTS_DATA: Project[] = [
       "Cloudinary",
       "GPT",
     ],
-    imageUrl: "/src/assets/dong-nai-travel.png",
+    imageUrl: dongNaiTravelImage,
     liveUrl: "https://www.youtube.com/watch?v=6lMZkIQiZ68",
     repoUrl: "https://github.com/Code4life-Labs/dongnai-travel",
   },
