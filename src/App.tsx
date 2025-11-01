@@ -37,11 +37,11 @@ const pageVariants = {
   out: { opacity: 0, x: 100 },
 };
 
-// const pageTransition = {
-//   type: "tween",
-//   damping: 10,
-//   stiffness: 100,
-// };
+const pageTransition = {
+  type: "tween",
+  damping: 10,
+  stiffness: 100,
+};
 
 const App: React.FC = () => {
   const [activeSection, setActiveSection] = useState<Section>("home");
@@ -82,14 +82,8 @@ const App: React.FC = () => {
             animate="in"
             exit="out"
             variants={pageVariants}
-            transition={
-              {
-                type: "tween",
-                damping: 10,
-                stiffness: 100,
-              }
-            }
-            className="h-full w-full"
+            transition={pageTransition as any}
+            className="h-full w-full "
           >
             <CurrentSection />
           </motion.div>

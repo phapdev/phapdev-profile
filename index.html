@@ -1,62 +1,21 @@
 <!doctype html>
-<html lang="en">
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="PhapDev - Full Stack Developer Profile" />
+    <title>PhapDev Profile</title>
+    
+    <!-- Preconnect to Google Fonts for better performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="./assets/farvicon.png" />
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>phapdev profile</title>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            base: "#0a0a1a",
-            primary: "#00ffff",
-            secondary: "#ff00ff",
-            accent: "#ffffff",
-          },
-          fontFamily: {
-            sans: ["Exo 2", "sans-serif"],
-            mono: ["Space Grotesk", "monospace"],
-          },
-          keyframes: {
-            fadeIn: {
-              "0%": {opacity: "0"},
-              "100%": {opacity: "1"},
-            },
-            pulseGlow: {
-              "0%, 100%": {
-                boxShadow:
-                  "0 0 5px #00ffff, 0 0 10px #00ffff, 0 0 15px #ff00ff",
-                opacity: "0.8",
-              },
-              "50%": {
-                boxShadow:
-                  "0 0 10px #00ffff, 0 0 20px #00ffff, 0 0 30px #ff00ff",
-                opacity: "1",
-              },
-            },
-          },
-          animation: {
-            fadeIn: "fadeIn 1s ease-in-out",
-            pulseGlow: "pulseGlow 4s ease-in-out infinite",
-          },
-        },
-      },
-    };
-  </script>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Exo+2:wght@300;400;700&family=Space+Grotesk:wght@400;500;700&display=swap"
-    rel="stylesheet" />
-  <!-- <link rel="stylesheet" href="/index.css" /> -->
-  <link rel="icon" type="image/png" href="./assets/farvicon.png" />
-</head>
-
-<body>
-  <div id="root"></div>
-  <script type="module" src="src/index.tsx"></script>
-</body>
-
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/index.tsx"></script>
+  </body>
 </html>
