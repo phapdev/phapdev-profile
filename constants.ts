@@ -1,4 +1,4 @@
-import type { Project, Skill } from "./types";
+import type { Project, Skill, Theme, ThemeName } from "./types";
 
 export const PROJECTS_DATA: Project[] = [
   {
@@ -62,3 +62,22 @@ export const SKILLS_DATA: Skill[] = [
   { name: "Sui Move", level: 3, category: "Web3" },
   { name: "progress...", level: 3, category: "Web3" },
 ];
+
+export const THEMES: Record<ThemeName, Theme> = {
+  'holo-cyan': {
+    name: 'holo-cyan',
+    colors: { primary: '#00ffff', secondary: '#ff00ff' },
+  },
+  'synth-magenta': {
+    name: 'synth-magenta',
+    colors: { primary: '#ff00ff', secondary: '#00ffff' },
+  },
+  'plasma-green': {
+    name: 'plasma-green',
+    colors: { primary: '#00ff00', secondary: '#ffff00' },
+  },
+  'solar-flare': {
+    name: 'solar-flare',
+    colors: { primary: '#ff8c00', secondary: '#ff4500' },
+  },
+};

@@ -1,4 +1,4 @@
-export type Section = "home" | "about" | "projects" | "contact";
+export type Section = "home" | "about" | "projects" | "resume" | "contact";
 
 export interface Project {
   id: number;
@@ -14,4 +14,14 @@ export interface Skill {
   name: string;
   level: number; // e.g., 1-5 for proficiency
   category: "Frontend" | "Backend" | "DevOps" | "Tools" | "Web3";
+}
+
+export type ThemeName = 'holo-cyan' | 'synth-magenta' | 'plasma-green' | 'solar-flare';
+
+export interface Theme {
+  name: ThemeName;
+  colors: {
+    primary: string;
+    secondary: string;
+  };
 }

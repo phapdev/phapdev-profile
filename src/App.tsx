@@ -6,6 +6,7 @@ import {
   Layers,
   Mail,
   Terminal as TerminalIcon,
+  FileText,
 } from "lucide-react";
 
 import { AnimatedBackground } from "../components/AnimatedBackground";
@@ -15,12 +16,15 @@ import { AboutPage } from "../components/sections/About";
 import { ProjectsPage } from "../components/sections/Projects";
 import { ContactPage } from "../components/sections/Contact";
 import { Terminal } from "../components/Terminal";
-import type { Section } from "../types";
+import { ResumePage } from "../components/sections/Resume";
+import type { Section, ThemeName } from "../types";
+import { THEMES } from "../constants";
 
 const sectionComponents = {
   home: HomePage,
   about: AboutPage,
   projects: ProjectsPage,
+  resume: ResumePage,
   contact: ContactPage,
 };
 
@@ -28,6 +32,7 @@ const navItems = [
   { id: "home" as Section, label: "Mainframe", icon: Home },
   { id: "about" as Section, label: "Personal File", icon: User },
   { id: "projects" as Section, label: "Simulations", icon: Layers },
+  { id: 'resume' as Section, label: 'CV/Resume', icon: FileText },
   { id: "contact" as Section, label: "Comms", icon: Mail },
 ];
 
@@ -38,15 +43,25 @@ const pageVariants = {
 };
 
 const pageTransition = {
-  type: "tween",
-  damping: 10,
-  stiffness: 100,
+  type: 'tween',
+  ease: 'anticipate',
+  duration: 0.5,
 };
 
 const App: React.FC = () => {
   const [activeSection, setActiveSection] = useState<Section>("home");
   const [isTerminalOpen, setTerminalOpen] = useState(false);
-  const CurrentSection = sectionComponents[activeSection];
+  const [activeTheme, setActiveTheme] = useState<ThemeName>('holo-cyan');
+  const [backgroundOpacity, setBackgroundOpacity] = useState(0.2);
+  // const CurrentSection = sectionComponents[activeSection];
+
+
+  useEffect(() => {
+    const theme = THEMES[activeTheme];
+    const root = document.documentElement;
+    root.style.setProperty('--color-primary', theme.colors.primary);
+    root.style.setProperty('--color-secondary', theme.colors.secondary);
+  }, [activeTheme]);
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -67,7 +82,7 @@ const App: React.FC = () => {
 
   return (
     <main className="h-screen w-screen overflow-hidden font-sans relative flex">
-      <AnimatedBackground />
+      <AnimatedBackground opacity={backgroundOpacity} />
       <Navigation
         navItems={navItems}
         activeSection={activeSection}
@@ -85,7 +100,16 @@ const App: React.FC = () => {
             transition={pageTransition as any}
             className="h-full w-full "
           >
-            <CurrentSection />
+            {/* <CurrentSection /> */}
+            {activeSection === 'home' ? (
+              <HomePage 
+                setActiveTheme={setActiveTheme} 
+                setBackgroundOpacity={setBackgroundOpacity} 
+                currentOpacity={backgroundOpacity}
+              />
+            ) : (
+              sectionComponents[activeSection] ? React.createElement(sectionComponents[activeSection]) : null
+            )}
           </motion.div>
         </AnimatePresence>
       </div>
