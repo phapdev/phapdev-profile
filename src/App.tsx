@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { AnimatePresence, motion } from "framer-motion";
+import { Analytics } from "@vercel/analytics/react";
 import {
   Home,
   User,
@@ -130,6 +131,7 @@ const App: React.FC = () => {
           <Terminal closeTerminal={() => setTerminalOpen(false)} />
         )}
       </AnimatePresence>
+      <Analytics />
     </main>
   );
 };
