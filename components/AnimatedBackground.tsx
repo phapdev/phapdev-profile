@@ -116,7 +116,7 @@ export const AnimatedBackground: React.FC = () => {
 
   return (
     <div className="absolute top-0 left-0 w-full h-full -z-10">
-      <div className="absolute top-0 left-0 w-full h-full bg-[url('../assets/tot-nghiep.jpg')] bg-cover bg-center animate-[fadeIn_5s_ease-in-out] opacity-10"></div>
+      <div className="absolute top-0 left-0 w-full h-full bg-[url('/src/assets/tot-nghiep.jpg')] bg-cover bg-center animate-[fadeIn_5s_ease-in-out] opacity-10"></div>
       <canvas ref={canvasRef} className="absolute top-0 left-0 w-full h-full" />
     </div>
   );

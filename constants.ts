@@ -6,7 +6,7 @@ export const PROJECTS_DATA: Project[] = [
     title: "Sui-simulator",
     description: "An open-source project for sui developers",
     tech: ["VScode Extension", "Sui Blockchain", "React", "TypeScript"],
-    imageUrl: "./assets/sui-simulator.png",
+    imageUrl: "/src/assets/sui-simulator.png",
     liveUrl:
       "https://marketplace.visualstudio.com/items?itemName=weminal-labs.sui-simulator-vscode",
     repoUrl: "https://github.com/Weminal-labs/sui-simulator-vscode",
@@ -26,7 +26,7 @@ export const PROJECTS_DATA: Project[] = [
       "Cloudinary",
       "GPT",
     ],
-    imageUrl: "./assets/dong-nai-travel.png",
+    imageUrl: "/src/assets/dong-nai-travel.png",
     liveUrl: "https://www.youtube.com/watch?v=6lMZkIQiZ68",
     repoUrl: "https://github.com/Code4life-Labs/dongnai-travel",
   },
