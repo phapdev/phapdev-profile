@@ -16,12 +16,18 @@ export interface Skill {
   category: "Frontend" | "Backend" | "DevOps" | "Tools" | "Web3";
 }
 
+export interface JourneyGalleryItem {
+  imageUrl: string;
+  description: string;
+}
+
 export interface JourneyEntry {
   id: number;
   role: string;
   company: string;
   period: string;
   details: string[];
+  gallery: JourneyGalleryItem[];
 }
 
 export type ThemeName = 

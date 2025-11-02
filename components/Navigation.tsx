@@ -25,7 +25,7 @@ export const Navigation: React.FC<NavigationProps> = ({ navItems, activeSection,
           <button
             key={id}
             onClick={() => setActiveSection(id)}
-            className={`relative group p-3 rounded-full transition-all duration-300 ease-in-out
+            className={`relative group p-3 rounded-full transition-all duration-300 ease-in-out hover:cursor-pointer
               ${activeSection === id 
                 ? 'bg-primary text-base animate-pulseGlow' 
                 : 'text-primary/70 hover:bg-primary/10 hover:text-primary'

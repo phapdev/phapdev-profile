@@ -1,6 +1,10 @@
 import type { BlogCategory, BlogPost, JourneyEntry, Project, Skill, Theme, ThemeName } from "./types";
 import suiSimulatorImage from "./src/assets/sui-simulator.png";
 import dongNaiTravelImage from "./src/assets/dong-nai-travel.png";
+import thamGiaDongNaiTravel from "./src/assets/dntu-journey/dongnaitravel-nhangiai.jpg"
+import nhangiaiDongNaiTravel from "./src/assets/dntu-journey/nhan-giai.jpg"
+import giayKhenDongNaiTravel from "./src/assets/dntu-journey/giay-khen-dntv.png"
+import totNghiep from "./src/assets/tot-nghiep.jpg"
 import { rustWasmContent } from "./contents/rustWasmContent";
 
 export const PROJECTS_DATA: Project[] = [
@@ -76,17 +80,16 @@ export const JOURNEY_DATA: JourneyEntry[] = [
     details: [
       "Studied at Dong Nai Technology University, specializing in Software Engineering.",
       "Graduated with a Software Engineer degree."
-    ]
+    ],
+    gallery: [
+      { imageUrl: totNghiep, description: "Graduated from Dong Nai Technology University" },
+      { imageUrl: thamGiaDongNaiTravel, description: "Participate in Dong Nai Digital Transformation Competition 2023" },
+      { imageUrl: nhangiaiDongNaiTravel, description: "Won 3rd Prize in Dong Nai Digital Transformation Competition 2023" },
+      { imageUrl: giayKhenDongNaiTravel, description: "Certificate of Merit for Dong Nai Digital Transformation Competition 2023" }
+  ]
   },
   {
       id: 1,
-      role: "Đang Thực Hiện Nghĩa Vụ Quân Sự!!!",
-      company: "Quân Đội Nhân Dân Việt Nam",
-      period: "6/2025 - present",
-      details: []
-  },
-  {
-      id: 2,
       role: "Software Engineer",
       company: "VBI Academy",
       period: "6/2024 - 6/2025",
@@ -94,7 +97,16 @@ export const JOURNEY_DATA: JourneyEntry[] = [
           "Developed a web application gaming platform integrating with Unity Engine and blockchain technology Avail, OpenCampus, Sui blockchain, etc. using React and TypeScript.",
           "Implemented a RESTful API for game data using Node.js and Express and MongoDB.",
           "Integrated with a database for storing and retrieving game data."
-      ]
+      ],
+      gallery: []
+  },
+  {
+      id: 2,
+      role: "Đang Thực Hiện Nghĩa Vụ Quân Sự!!!",
+      company: "Quân Đội Nhân Dân Việt Nam",
+      period: "6/2025 - present",
+      details: [],
+      gallery: []
   },
 ];
 
