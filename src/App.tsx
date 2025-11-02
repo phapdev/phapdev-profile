@@ -8,6 +8,7 @@ import {
   Mail,
   Terminal as TerminalIcon,
   FileText,
+  GitBranch,
 } from "lucide-react";
 
 import { AnimatedBackground } from "../components/AnimatedBackground";
@@ -18,6 +19,8 @@ import { ProjectsPage } from "../components/sections/Projects";
 import { ContactPage } from "../components/sections/Contact";
 import { Terminal } from "../components/Terminal";
 import { ResumePage } from "../components/sections/Resume";
+import { JourneyPage } from "../components/sections/Journey";
+import { ThemeSwitcher } from "../components/ThemeSwitcher";
 import type { Section, ThemeName } from "../types";
 import { THEMES } from "../constants";
 
@@ -25,7 +28,8 @@ const sectionComponents = {
   home: HomePage,
   about: AboutPage,
   projects: ProjectsPage,
-  resume: ResumePage,
+  resume: ResumePage,  
+  journey: JourneyPage,
   contact: ContactPage,
 };
 
@@ -34,6 +38,7 @@ const navItems = [
   { id: "about" as Section, label: "Personal File", icon: User },
   { id: "projects" as Section, label: "Simulations", icon: Layers },
   { id: 'resume' as Section, label: 'CV/Resume', icon: FileText },
+  { id: 'journey' as Section, label: 'Journey', icon: GitBranch },
   { id: "contact" as Section, label: "Comms", icon: Mail },
 ];
 
@@ -54,7 +59,6 @@ const App: React.FC = () => {
   const [isTerminalOpen, setTerminalOpen] = useState(false);
   const [activeTheme, setActiveTheme] = useState<ThemeName>('holo-cyan');
   const [backgroundOpacity, setBackgroundOpacity] = useState(0.2);
-  // const CurrentSection = sectionComponents[activeSection];
 
 
   useEffect(() => {
@@ -84,6 +88,7 @@ const App: React.FC = () => {
   return (
     <main className="h-screen w-screen overflow-hidden font-sans relative flex">
       <AnimatedBackground opacity={backgroundOpacity} />
+
       <Navigation
         navItems={navItems}
         activeSection={activeSection}
@@ -101,19 +106,18 @@ const App: React.FC = () => {
             transition={pageTransition as any}
             className="h-full w-full "
           >
-            {/* <CurrentSection /> */}
-            {activeSection === 'home' ? (
-              <HomePage 
-                setActiveTheme={setActiveTheme} 
-                setBackgroundOpacity={setBackgroundOpacity} 
-                currentOpacity={backgroundOpacity}
-              />
-            ) : (
-              sectionComponents[activeSection] ? React.createElement(sectionComponents[activeSection]) : null
-            )}
+            {sectionComponents[activeSection] ? React.createElement(sectionComponents[activeSection]) : null}
           </motion.div>
         </AnimatePresence>
       </div>
+
+      {/* Theme Switcher - Available on all screens */}
+      <ThemeSwitcher 
+        activeTheme={activeTheme}
+        setActiveTheme={setActiveTheme} 
+        setBackgroundOpacity={setBackgroundOpacity}
+        currentOpacity={backgroundOpacity}
+      />
 
       {/* Terminal Trigger */}
       <div className="absolute bottom-4 right-4 z-50">

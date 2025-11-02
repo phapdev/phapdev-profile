@@ -1,14 +1,5 @@
 import React from "react";
 import { motion, type Variants } from "framer-motion";
-import type { ThemeName } from "../../types";
-import { ThemeSwitcher } from "../ThemeSwitcher";
-
-interface HomePageProps {
-  // Fix: Correctly type setActiveTheme to allow function callbacks
-  setActiveTheme: React.Dispatch<React.SetStateAction<ThemeName>>;
-  setBackgroundOpacity: React.Dispatch<React.SetStateAction<number>>;
-  currentOpacity: number;
-}
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -26,15 +17,9 @@ const itemVariants: Variants = {
   visible: { opacity: 1, y: 0, transition: { type: 'spring', stiffness: 100 } },
 };
 
-export const HomePage: React.FC<HomePageProps> = ({ setActiveTheme, setBackgroundOpacity, currentOpacity }) => {
-
+export const HomePage: React.FC = () => {
   return (
-    <div className="h-full flex items-center justify-center relative">
-      <ThemeSwitcher 
-        setActiveTheme={setActiveTheme} 
-        setBackgroundOpacity={setBackgroundOpacity}
-        currentOpacity={currentOpacity}
-      />
+    <div className="h-full flex items-center justify-center">
       <motion.div
         className="text-center flex flex-col items-center"
         variants={containerVariants}

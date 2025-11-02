@@ -1,6 +1,8 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Download, Mail, Phone, Linkedin, Github, MapPin } from 'lucide-react';
+import { JOURNEY_DATA } from '../../constants';
+import type { JourneyEntry } from '../../types';
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -48,6 +50,11 @@ export const ResumePage: React.FC = () => {
     document.body.removeChild(link);
   };
 
+
+  const workExperience = JOURNEY_DATA.filter((item: JourneyEntry) => !item.role.toLowerCase().includes('student'));
+  const education = JOURNEY_DATA.find((item: JourneyEntry) => item.role.toLowerCase().includes('student'));
+
+
   return (
     <div className="h-full flex flex-col p-4 md:p-8 overflow-y-auto relative">
        <div className="absolute top-4 right-4 z-20">
@@ -93,22 +100,24 @@ export const ResumePage: React.FC = () => {
         
         {/* Work Experience */}
         <CVSection title="Work Experience">
+          {workExperience.map((item: JourneyEntry) => (
             <Job 
-                role="Intern Frontend Developer"
-                company="VBI Academy"
-                period="6/2025 - 6/2026"
-                details={[
-                    "Developed a web application gaming platform integrating with Unity Engine and blockchain technology Avail, OpenCampus, Sui blockchain, etc. using React and TypeScript.",
-                    "Implemented a RESTful API for game data using Node.js and Express and MongoDB.",
-                    "Integrated with a database for storing and retrieving game data."
-                ]}
+                key={item.id}
+                role={item.role}
+                company={item.company}
+                period={item.period}
+                details={item.details}
             />
+          ))}
+          {education && education.company !== "" && (
             <Job 
-                role="Đang Thực Hiện Nghĩa Vụ Quân Sự!!!"
-                company="Quân Đội Nhân Dân Việt Nam"
-                period="6/2025 - present"
-                details={[]}
+                key={education.id}
+                role={education.role}
+                company={education.company}
+                period={education.period}
+                details={education.details}
             />
+          )}
         </CVSection>
 
         {/* Technical Skills */}

@@ -1,4 +1,4 @@
-import type { Project, Skill, Theme, ThemeName } from "./types";
+import type { JourneyEntry, Project, Skill, Theme, ThemeName } from "./types";
 import suiSimulatorImage from "./src/assets/sui-simulator.png";
 import dongNaiTravelImage from "./src/assets/dong-nai-travel.png";
 
@@ -63,6 +63,39 @@ export const SKILLS_DATA: Skill[] = [
   // Web3
   { name: "Sui Move", level: 3, category: "Web3" },
   { name: "progress...", level: 3, category: "Web3" },
+];
+
+
+export const JOURNEY_DATA: JourneyEntry[] = [
+  {
+    id: 0,
+    role: "Student",
+    company: "Dong Nai Technology University",
+    period: "9/2020 - 6/2025",
+    details: [
+      "Studied at Dong Nai Technology University, specializing in Software Engineering.",
+      "Graduated with a Software Engineer degree."
+    ]
+  },
+  {
+      id: 1,
+      role: "Software Engineer",
+      company: "VBI Academy",
+      period: "6/2025 - 6/2026",
+      details: [
+          "Developed a web application gaming platform integrating with Unity Engine and blockchain technology Avail, OpenCampus, Sui blockchain, etc. using React and TypeScript.",
+          "Implemented a RESTful API for game data using Node.js and Express and MongoDB.",
+          "Integrated with a database for storing and retrieving game data."
+      ]
+  },
+  {
+      id: 2,
+      role: "Đang Thực Hiện Nghĩa Vụ Quân Sự!!!",
+      company: "Quân Đội Nhân Dân Việt Nam",
+      period: "6/2025 - present",
+      details: []
+  },
+  
 ];
 
 export const THEMES: Record<ThemeName, Theme> = {

@@ -16,6 +16,15 @@ export interface Skill {
   category: "Frontend" | "Backend" | "DevOps" | "Tools" | "Web3";
 }
 
+export interface JourneyEntry {
+  id: number;
+  role: string;
+  company: string;
+  period: string;
+  details: string[];
+}
+
+
 export type ThemeName = 'holo-cyan' | 'synth-magenta' | 'plasma-green' | 'solar-flare';
 
 export interface Theme {
