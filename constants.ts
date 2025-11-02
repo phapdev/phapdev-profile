@@ -1,6 +1,7 @@
-import type { JourneyEntry, Project, Skill, Theme, ThemeName } from "./types";
+import type { BlogCategory, BlogPost, JourneyEntry, Project, Skill, Theme, ThemeName } from "./types";
 import suiSimulatorImage from "./src/assets/sui-simulator.png";
 import dongNaiTravelImage from "./src/assets/dong-nai-travel.png";
+import { rustWasmContent } from "./contents/rustWasmContent";
 
 export const PROJECTS_DATA: Project[] = [
   {
@@ -79,23 +80,22 @@ export const JOURNEY_DATA: JourneyEntry[] = [
   },
   {
       id: 1,
+      role: "Đang Thực Hiện Nghĩa Vụ Quân Sự!!!",
+      company: "Quân Đội Nhân Dân Việt Nam",
+      period: "6/2025 - present",
+      details: []
+  },
+  {
+      id: 2,
       role: "Software Engineer",
       company: "VBI Academy",
-      period: "6/2025 - 6/2026",
+      period: "6/2024 - 6/2025",
       details: [
           "Developed a web application gaming platform integrating with Unity Engine and blockchain technology Avail, OpenCampus, Sui blockchain, etc. using React and TypeScript.",
           "Implemented a RESTful API for game data using Node.js and Express and MongoDB.",
           "Integrated with a database for storing and retrieving game data."
       ]
   },
-  {
-      id: 2,
-      role: "Đang Thực Hiện Nghĩa Vụ Quân Sự!!!",
-      company: "Quân Đội Nhân Dân Việt Nam",
-      period: "6/2025 - present",
-      details: []
-  },
-  
 ];
 
 export const THEMES: Record<ThemeName, Theme> = {
@@ -115,4 +115,58 @@ export const THEMES: Record<ThemeName, Theme> = {
     name: 'solar-flare',
     colors: { primary: '#ff8c00', secondary: '#ff4500' },
   },
+  'neon-purple': {
+    name: 'neon-purple',
+    colors: { primary: '#9333ea', secondary: '#ec4899' },
+  },
+  'ocean-blue': {
+    name: 'ocean-blue',
+    colors: { primary: '#06b6d4', secondary: '#3b82f6' },
+  },
+  'matrix-green': {
+    name: 'matrix-green',
+    colors: { primary: '#10b981', secondary: '#22d3ee' },
+  },
+  'cosmic-pink': {
+    name: 'cosmic-pink',
+    colors: { primary: '#f472b6', secondary: '#a855f7' },
+  },
+  'electric-yellow': {
+    name: 'electric-yellow',
+    colors: { primary: '#eab308', secondary: '#f59e0b' },
+  },
+  'arctic-ice': {
+    name: 'arctic-ice',
+    colors: { primary: '#67e8f9', secondary: '#a5f3fc' },
+  },
+  'volcanic-red': {
+    name: 'volcanic-red',
+    colors: { primary: '#ef4444', secondary: '#f97316' },
+  },
+  'aurora-violet': {
+    name: 'aurora-violet',
+    colors: { primary: '#8b5cf6', secondary: '#d946ef' },
+  },
+  'midnight-blue': {
+    name: 'midnight-blue',
+    colors: { primary: '#6366f1', secondary: '#3b82f6' },
+  },
+  'sunset-orange': {
+    name: 'sunset-orange',
+    colors: { primary: '#f97316', secondary: '#fb923c' },
+  },
 };
+
+export const BLOG_CATEGORIES: BlogCategory[] = ['AI', 'Frontend', 'Backend', 'Rust', 'Database', 'General', 'Blockchain'];
+
+export const BLOG_POSTS_DATA: BlogPost[] = [
+  {
+    id: 1,
+    slug: 'getting-started-with-rust-for-webassembly',
+    title: 'Getting Started with Rust for WebAssembly',
+    excerpt: 'Explore how to build high-performance web applications by compiling Rust to WebAssembly. A step-by-step guide for modern web developers.',
+    category: 'Rust',
+    date: '2025-11-02',
+    content: rustWasmContent,
+  }
+];

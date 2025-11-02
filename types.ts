@@ -1,4 +1,4 @@
-export type Section = "home" | "about" | "projects" | "resume" | "contact";
+export type Section = "home" | "about" | "projects" | "resume" | "blog" | "journey" | "contact";
 
 export interface Project {
   id: number;
@@ -24,8 +24,21 @@ export interface JourneyEntry {
   details: string[];
 }
 
-
-export type ThemeName = 'holo-cyan' | 'synth-magenta' | 'plasma-green' | 'solar-flare';
+export type ThemeName = 
+  | 'holo-cyan' 
+  | 'synth-magenta' 
+  | 'plasma-green' 
+  | 'solar-flare'
+  | 'neon-purple'
+  | 'ocean-blue'
+  | 'matrix-green'
+  | 'cosmic-pink'
+  | 'electric-yellow'
+  | 'arctic-ice'
+  | 'volcanic-red'
+  | 'aurora-violet'
+  | 'midnight-blue'
+  | 'sunset-orange';
 
 export interface Theme {
   name: ThemeName;
@@ -33,4 +46,16 @@ export interface Theme {
     primary: string;
     secondary: string;
   };
+}
+
+export type BlogCategory = 'AI' | 'Frontend' | 'Backend' | 'Rust' | 'Database' | 'General' | 'Blockchain';
+
+export interface BlogPost {
+  id: number;
+  slug: string;
+  title: string;
+  excerpt: string;
+  category: BlogCategory;
+  date: string;
+  content: string; // Markdown content
 }

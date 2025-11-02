@@ -97,7 +97,7 @@ export const ThemeSwitcher: React.FC<ThemeSwitcherProps> = ({
 
           {/* Theme Dropdown */}
           {isOpen && (
-            <div className="absolute top-full right-0 mt-2 glassmorphism rounded-lg p-4 min-w-[200px] shadow-lg">
+            <div className="absolute top-full right-0 mt-2 glassmorphism rounded-lg p-4 min-w-[300px] max-w-[350px] shadow-lg">
               <div className="flex items-center justify-between mb-3">
                 <h3 className="text-sm font-semibold text-accent">Pick a theme</h3>
                 <button
@@ -108,39 +108,43 @@ export const ThemeSwitcher: React.FC<ThemeSwitcherProps> = ({
                   <X size={16} />
                 </button>
               </div>
-              <div className="space-y-2">
-                {themeNames.map((themeName) => {
-                  const theme = THEMES[themeName];
-                  const isActive = activeTheme === themeName;
-                  return (
-                    <button
-                      key={themeName}
-                      onClick={() => handleThemeSelect(themeName)}
-                      className={`w-full flex items-center space-x-3 p-2 rounded-md transition-all ${
-                        isActive 
-                          ? 'bg-primary/20 border border-primary/50' 
-                          : 'hover:bg-primary/10 border border-transparent'
-                      }`}
-                    >
-                      <div className="flex items-center space-x-2">
-                        <div
-                          className="w-6 h-6 rounded-full border-2 border-accent/30"
-                          style={{ backgroundColor: theme.colors.primary }}
-                        />
-                        <div
-                          className="w-6 h-6 rounded-full border-2 border-accent/30"
-                          style={{ backgroundColor: theme.colors.secondary }}
-                        />
-                      </div>
-                      <span className="text-sm text-accent capitalize">
-                        {themeName.replace('-', ' ')}
-                      </span>
-                      {isActive && (
-                        <span className="ml-auto text-primary text-xs">✓</span>
-                      )}
-                    </button>
-                  );
-                })}
+              {/* Scrollable grid container */}
+              <div className="max-h-[400px] overflow-y-auto pr-2">
+                <div className="grid grid-cols-2 gap-2">
+                  {themeNames.map((themeName) => {
+                    const theme = THEMES[themeName];
+                    const isActive = activeTheme === themeName;
+                    return (
+                      <button
+                        key={themeName}
+                        onClick={() => handleThemeSelect(themeName)}
+                        className={`w-full flex flex-col items-center justify-center p-3 rounded-md transition-all ${
+                          isActive 
+                            ? 'bg-primary/20 border-2 border-primary/50 shadow-[0_0_10px_rgba(var(--color-primary-rgb),0.3)]' 
+                            : 'hover:bg-primary/10 border-2 border-transparent hover:border-primary/20'
+                        }`}
+                        title={themeName.replace(/-/g, ' ')}
+                      >
+                        <div className="flex items-center space-x-2 mb-2">
+                          <div
+                            className="w-5 h-5 rounded-full border-2 border-accent/30 shadow-sm"
+                            style={{ backgroundColor: theme.colors.primary }}
+                          />
+                          <div
+                            className="w-5 h-5 rounded-full border-2 border-accent/30 shadow-sm"
+                            style={{ backgroundColor: theme.colors.secondary }}
+                          />
+                        </div>
+                        <span className="text-xs text-accent capitalize text-center leading-tight">
+                          {themeName.replace(/-/g, ' ')}
+                        </span>
+                        {isActive && (
+                          <span className="mt-1 text-primary text-xs font-bold">✓</span>
+                        )}
+                      </button>
+                    );
+                  })}
+                </div>
               </div>
             </div>
           )}

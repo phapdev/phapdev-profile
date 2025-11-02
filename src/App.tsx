@@ -9,6 +9,7 @@ import {
   Terminal as TerminalIcon,
   FileText,
   GitBranch,
+  BookOpen,
 } from "lucide-react";
 
 import { AnimatedBackground } from "../components/AnimatedBackground";
@@ -21,6 +22,7 @@ import { Terminal } from "../components/Terminal";
 import { ResumePage } from "../components/sections/Resume";
 import { JourneyPage } from "../components/sections/Journey";
 import { ThemeSwitcher } from "../components/ThemeSwitcher";
+import { BlogPage } from "../components/sections/Blog";
 import type { Section, ThemeName } from "../types";
 import { THEMES } from "../constants";
 
@@ -29,6 +31,7 @@ const sectionComponents = {
   about: AboutPage,
   projects: ProjectsPage,
   resume: ResumePage,  
+  blog: BlogPage,
   journey: JourneyPage,
   contact: ContactPage,
 };
@@ -38,6 +41,7 @@ const navItems = [
   { id: "about" as Section, label: "Personal File", icon: User },
   { id: "projects" as Section, label: "Simulations", icon: Layers },
   { id: 'resume' as Section, label: 'CV/Resume', icon: FileText },
+  { id: 'blog' as Section, label: 'Data Logs', icon: BookOpen },
   { id: 'journey' as Section, label: 'Journey', icon: GitBranch },
   { id: "contact" as Section, label: "Comms", icon: Mail },
 ];
@@ -57,9 +61,16 @@ const pageTransition = {
 const App: React.FC = () => {
   const [activeSection, setActiveSection] = useState<Section>("home");
   const [isTerminalOpen, setTerminalOpen] = useState(false);
-  const [activeTheme, setActiveTheme] = useState<ThemeName>('holo-cyan');
-  const [backgroundOpacity, setBackgroundOpacity] = useState(0.2);
+  const [activeTheme, setActiveTheme] = useState<ThemeName>(localStorage.getItem('phapdev-theme') as ThemeName || 'holo-cyan');
+  const [backgroundOpacity, setBackgroundOpacity] = useState(parseFloat(localStorage.getItem('phapdev-opacity') || '0.2'));
 
+  useEffect(() => {
+    localStorage.setItem('phapdev-theme', activeTheme);
+  }, [activeTheme]);
+
+  useEffect(() => {
+    localStorage.setItem('phapdev-opacity', backgroundOpacity.toString());
+  }, [backgroundOpacity]);
 
   useEffect(() => {
     const theme = THEMES[activeTheme];
@@ -67,23 +78,6 @@ const App: React.FC = () => {
     root.style.setProperty('--color-primary', theme.colors.primary);
     root.style.setProperty('--color-secondary', theme.colors.secondary);
   }, [activeTheme]);
-
-  useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "`" || e.key === "~" || (e.key === "t" && e.metaKey)) {
-        e.preventDefault();
-        setTerminalOpen((prev) => !prev);
-      }
-      if (e.key === "Escape" && isTerminalOpen) {
-        setTerminalOpen(false);
-      }
-    };
-
-    window.addEventListener("keydown", handleKeyDown);
-    return () => {
-      window.removeEventListener("keydown", handleKeyDown);
-    };
-  }, [isTerminalOpen]);
 
   return (
     <main className="h-screen w-screen overflow-hidden font-sans relative flex">
@@ -95,7 +89,7 @@ const App: React.FC = () => {
         setActiveSection={setActiveSection}
       />
 
-      <div className="flex-grow p-4 md:p-8 lg:p-12 h-full relative overflow-y-auto">
+      <div className="grow p-4 md:p-8 lg:p-12 h-full relative overflow-y-auto">
         <AnimatePresence mode="wait">
           <motion.div
             key={activeSection}
@@ -106,7 +100,9 @@ const App: React.FC = () => {
             transition={pageTransition as any}
             className="h-full w-full "
           >
-            {sectionComponents[activeSection] ? React.createElement(sectionComponents[activeSection]) : null}
+            {activeSection in sectionComponents 
+              ? React.createElement(sectionComponents[activeSection as keyof typeof sectionComponents]) 
+              : null}
           </motion.div>
         </AnimatePresence>
       </div>

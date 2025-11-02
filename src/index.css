@@ -53,3 +53,29 @@ body {
 .text-glow {
   text-shadow: 0 0 8px var(--color-primary), 0 0 10px var(--color-primary);
 }
+
+/* Custom Scrollbar Styles */
+.overflow-y-auto::-webkit-scrollbar {
+  width: 6px;
+}
+
+.overflow-y-auto::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 10px;
+}
+
+.overflow-y-auto::-webkit-scrollbar-thumb {
+  background: var(--color-primary);
+  opacity: 0.3;
+  border-radius: 10px;
+}
+
+.overflow-y-auto::-webkit-scrollbar-thumb:hover {
+  opacity: 0.5;
+}
+
+/* Firefox scrollbar */
+.overflow-y-auto {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-primary) rgba(255, 255, 255, 0.05);
+}
