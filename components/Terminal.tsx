@@ -15,19 +15,23 @@ interface TerminalProps {
 
 const helpText = `
 Available commands:
-  help            - Shows this help message.
+  help | ?        - Shows this help message.
   whois           - Displays information about phapdev.
   skills          - Lists technical skills.
   projects        - Lists available projects.
   contact         - Shows contact information.
+  date            - Shows current date.
+  time            - Shows current time.
+  echo <text>     - Prints the provided text.
+  motd            - Shows message of the day.
   ask "<query>"   - Ask Gemini a complex question. (e.g., ask "explain quantum computing")
   clear           - Clears the terminal screen.
   exit            - Closes the terminal.
 `;
 
 const whoisText = `
-phapdev // Full-Stack Developer & Digital Architect
-Mission: To craft elegant, high-performance digital experiences by bridging the gap between innovative design and robust engineering. Specializing in building scalable applications with a futuristic aesthetic.
+phapdev // Developer & Software Engineer
+Mission: Build build and build.
 `;
 
 const contactText = `
@@ -38,7 +42,7 @@ LinkedIn: linkedin.com/in/phapdev
 `;
 
 export const Terminal: React.FC<TerminalProps> = ({ closeTerminal }) => {
-  const [history, setHistory] = useState<TerminalLine[]>([{ type: 'system', content: 'Terminal Initialized. Type `help` for commands.' }]);
+  const [history, setHistory] = useState<TerminalLine[]>([{ type: 'system', content: 'Terminal Initialized. Type `help | ?` for commands.' }]);
   const [input, setInput] = useState('');
   const [isProcessing, setIsProcessing] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
@@ -66,6 +70,9 @@ export const Terminal: React.FC<TerminalProps> = ({ closeTerminal }) => {
       case 'help':
         output = { type: 'output', content: helpText };
         break;
+      case '?':
+        output = { type: 'output', content: helpText };
+        break;
       case 'whois':
         output = { type: 'output', content: whoisText };
         break;
@@ -80,6 +87,24 @@ export const Terminal: React.FC<TerminalProps> = ({ closeTerminal }) => {
       case 'contact':
         output = { type: 'output', content: contactText };
         break;
+      case 'date': {
+        const now = new Date();
+        output = { type: 'output', content: now.toDateString() };
+        break;
+      }
+      case 'time': {
+        const now = new Date();
+        output = { type: 'output', content: now.toLocaleTimeString() };
+        break;
+      }
+      case 'echo': {
+        output = { type: 'output', content: fullArgs || '' };
+        break;
+      }
+      case 'motd': {
+        output = { type: 'output', content: 'Stay curious. Keep building. ✨' };
+        break;
+      }
       case 'clear':
         setHistory([]);
         setIsProcessing(false);

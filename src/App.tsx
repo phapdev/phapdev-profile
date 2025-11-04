@@ -61,8 +61,8 @@ const pageTransition = {
 const App: React.FC = () => {
   const [activeSection, setActiveSection] = useState<Section>("home");
   const [isTerminalOpen, setTerminalOpen] = useState(false);
-  const [activeTheme, setActiveTheme] = useState<ThemeName>(localStorage.getItem('phapdev-theme') as ThemeName || 'holo-cyan');
-  const [backgroundOpacity, setBackgroundOpacity] = useState(parseFloat(localStorage.getItem('phapdev-opacity') || '0.2'));
+  const [activeTheme, setActiveTheme] = useState<ThemeName>(localStorage.getItem('phapdev-theme') as ThemeName || 'neon-purple');
+  const [backgroundOpacity, setBackgroundOpacity] = useState(parseFloat(localStorage.getItem('phapdev-opacity') || '0.0'));
 
   useEffect(() => {
     localStorage.setItem('phapdev-theme', activeTheme);
@@ -78,6 +78,33 @@ const App: React.FC = () => {
     root.style.setProperty('--color-primary', theme.colors.primary);
     root.style.setProperty('--color-secondary', theme.colors.secondary);
   }, [activeTheme]);
+
+  // handle terminal (toggle with Backquote, close with Escape). Ignore when typing in inputs.
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      const target = event.target as HTMLElement | null;
+      const isTyping = !!target && (
+        target.tagName === 'INPUT' ||
+        target.tagName === 'TEXTAREA' ||
+        (target as HTMLElement).isContentEditable
+      );
+      if (isTyping) return;
+
+      // Close with Escape on any platform
+      if (event.key === 'Escape') {
+        setTerminalOpen(false);
+        return;
+      }
+
+      // Toggle with Backquote (`). Support by key and code
+      if (event.key === '`' || event.code === 'Backquote') {
+        event.preventDefault();
+        setTerminalOpen(prev => !prev);
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, []);
 
   return (
     <main className="h-screen w-screen overflow-hidden font-sans relative flex">

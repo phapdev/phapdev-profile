@@ -100,7 +100,7 @@ export const ResumePage: React.FC = () => {
         
         {/* Work Experience */}
         <CVSection title="Work Experience">
-          {workExperience.map((item: JourneyEntry) => (
+          {[...workExperience].reverse().map((item: JourneyEntry) => (
             <Job 
                 key={item.id}
                 role={item.role}
@@ -129,7 +129,6 @@ export const ResumePage: React.FC = () => {
                        <li>React, Next.js</li>
                        <li>TypeScript, JavaScript</li>
                        <li>TailwindCSS, CSS</li>
-                       <li>Framer Motion, Framer</li>
                     </ul>
                 </div>
                 <div>

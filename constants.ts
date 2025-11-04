@@ -73,7 +73,7 @@ export const SKILLS_DATA: Skill[] = [
 
 export const JOURNEY_DATA: JourneyEntry[] = [
   {
-    id: 0,
+    id: 1,
     role: "Student",
     company: "Dong Nai Technology University",
     period: "9/2020 - 6/2025",
@@ -89,7 +89,7 @@ export const JOURNEY_DATA: JourneyEntry[] = [
   ]
   },
   {
-      id: 1,
+      id: 2,
       role: "Software Engineer",
       company: "VBI Academy",
       period: "6/2024 - 6/2025",
@@ -101,7 +101,7 @@ export const JOURNEY_DATA: JourneyEntry[] = [
       gallery: []
   },
   {
-      id: 2,
+      id: 3,
       role: "Đang Thực Hiện Nghĩa Vụ Quân Sự!!!",
       company: "Quân Đội Nhân Dân Việt Nam",
       period: "6/2025 - present",
