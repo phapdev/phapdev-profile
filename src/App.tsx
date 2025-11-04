@@ -108,56 +108,62 @@ const App: React.FC = () => {
 
   return (
     <main className="h-screen w-screen overflow-hidden font-sans relative flex">
-      <AnimatedBackground opacity={backgroundOpacity} />
+      {/* Nền luôn hiển thị, giữ độ mờ nhẹ cố định */}
+      {/* <AnimatedBackground opacity={backgroundOpacity} /> */}
+      <AnimatedBackground opacity={ backgroundOpacity } />
 
-      <Navigation
-        navItems={navItems}
-        activeSection={activeSection}
-        setActiveSection={setActiveSection}
-      />
+      {/* Toàn bộ nội dung (navigation + page + controls) sẽ mờ dần theo slider */}
+      {/* <div style={{ opacity: Math.max(0, 1 - backgroundOpacity) }}> */}
+        <Navigation
+          navItems={navItems}
+          activeSection={activeSection}
+          setActiveSection={setActiveSection}
+          backgroundOpacity={ Math.max(0, 1 - backgroundOpacity) }
+        />
 
-      <div className="grow p-4 md:p-8 lg:p-12 h-full relative overflow-y-auto">
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={activeSection}
-            initial="initial"
-            animate="in"
-            exit="out"
-            variants={pageVariants}
-            transition={pageTransition as any}
-            className="h-full w-full "
+        <div className="grow p-4 md:p-8 lg:p-12 h-full relative overflow-y-auto" style={{ opacity: Math.max(0, 1 - backgroundOpacity) }}>
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={activeSection}
+              initial="initial"
+              animate="in"
+              exit="out"
+              variants={pageVariants}
+              transition={pageTransition as any}
+              className="h-full w-full "
+            >
+              {activeSection in sectionComponents 
+                ? React.createElement(sectionComponents[activeSection as keyof typeof sectionComponents]) 
+                : null}
+            </motion.div>
+          </AnimatePresence>
+        </div>
+
+        {/* Theme Switcher - Available on all screens */}
+        <ThemeSwitcher 
+          activeTheme={activeTheme}
+          setActiveTheme={setActiveTheme} 
+          setBackgroundOpacity={setBackgroundOpacity}
+          currentOpacity={backgroundOpacity}
+        />
+
+        {/* Terminal Trigger */}
+        <div className="absolute bottom-4 right-4 z-50">
+          <button
+            onClick={() => setTerminalOpen(true)}
+            className="p-2 text-primary/50 hover:text-primary hover:scale-110 transition-all duration-300"
+            aria-label="Open Terminal"
           >
-            {activeSection in sectionComponents 
-              ? React.createElement(sectionComponents[activeSection as keyof typeof sectionComponents]) 
-              : null}
-          </motion.div>
+            <TerminalIcon size={44} />
+          </button>
+        </div>
+
+        <AnimatePresence>
+          {isTerminalOpen && (
+            <Terminal closeTerminal={() => setTerminalOpen(false)} />
+          )}
         </AnimatePresence>
-      </div>
-
-      {/* Theme Switcher - Available on all screens */}
-      <ThemeSwitcher 
-        activeTheme={activeTheme}
-        setActiveTheme={setActiveTheme} 
-        setBackgroundOpacity={setBackgroundOpacity}
-        currentOpacity={backgroundOpacity}
-      />
-
-      {/* Terminal Trigger */}
-      <div className="absolute bottom-4 right-4 z-50">
-        <button
-          onClick={() => setTerminalOpen(true)}
-          className="p-2 text-primary/50 hover:text-primary hover:scale-110 transition-all duration-300"
-          aria-label="Open Terminal"
-        >
-          <TerminalIcon size={44} />
-        </button>
-      </div>
-
-      <AnimatePresence>
-        {isTerminalOpen && (
-          <Terminal closeTerminal={() => setTerminalOpen(false)} />
-        )}
-      </AnimatePresence>
+      {/* </div> */}
       <Analytics />
     </main>
   );

@@ -12,11 +12,12 @@ interface NavigationProps {
   navItems: NavItem[];
   activeSection: Section;
   setActiveSection: (section: Section) => void;
+  backgroundOpacity: number;
 }
 
-export const Navigation: React.FC<NavigationProps> = ({ navItems, activeSection, setActiveSection }) => {
+export const Navigation: React.FC<NavigationProps> = ({ navItems, activeSection, setActiveSection, backgroundOpacity }) => {
   return (
-    <nav className="z-10 h-screen glassmorphism p-2 flex flex-col items-center justify-center space-y-6">
+    <nav className="z-10 h-screen glassmorphism p-2 flex flex-col items-center justify-center space-y-6" style={{ opacity: backgroundOpacity }}>
       <div className="text-primary font-bold text-lg tracking-widest -rotate-90 whitespace-nowrap mb-12">
         PHAPDEV
       </div>
